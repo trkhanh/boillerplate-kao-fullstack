@@ -94,7 +94,7 @@ solution
     - Xcode (for iOS) (latest)
     - Android Studio (for Android) (latest)
     - Follow React Native Guide to setup your local machine
-* Clone repository git clone git@github.com:trkhanh8/fullstack-javascript-architecture.git fullstack
+* Clone repository git clone git@github.com:trkhanh/fullstack-javascript-architecture.git fullstack
 * API
     * Info
         - [ ] Authentication strategy: [JWT]('https://jwt.io/introduction/') (JSON Web Token)
@@ -155,7 +155,7 @@ solution
     * Deploy code
         1. Login to the server (SSH)
         2. Create a new directory on server: `mkdir /var/www/fullstack` and switch to the directory `cd /var/www/fullstack`
-        3. Clone repository git clone `git@github.com:trkhanh8/fullstack-javascript-architecture.git` .
+        3. Clone repository git clone `git@github.com:trkhanh/fullstack-javascript-architecture.git` .
         4. Switch to `deployment` directory cd `deployment`
         5. Build containers `docker-compose up --build -d`
             - `up` = Builds, (re)creates, starts, and attaches to containers for a service.
@@ -194,3 +194,11 @@ solution
         - Icons and splashscreen generator imagegorilla
     ## Authors
     - 👩‍💻Tran Khanh [trkhanh8@gmail.com](mailto:trkhanh8@gmail.com) 
+
+    ## Hire me
+    Looking for a developer to build your next idea or need a developer to work remotely? Get in touch: [kaoengine@gmail.com](mailto:kaoengine@gmail.com)
+
+    ## License
+    Copyright (c) 2020 Tran Khanh http://github.com/trkhanh
+
+    The MIT License (http://www.opensource.org/licenses/mit-license.php)
