@@ -122,3 +122,19 @@ solution
             - Start API server: npm start (http://localhost:8000)
 * Landing
     - Switch to landing directory cd frontend/landing
+    - Configuration
+        - Create local environment file cp `.env.dev.example` `.env.local`
+        - Modify `.env.local` for
+            - `PORT` (3000)
+            - `NODE_ENV` (development | production)
+            - `URL_LANDING` (http://localhost:3000)
+            - `URL_WEB` (http://localhost:5000)
+            - `URL_API` (http://localhost:8000)
+            - `GA_TRACKING_ID` (Google analytics tracking ID)
+            - Setup
+            - Install dependencies: `npm install`
+            - Run
+            - Start Landing server: npm start, browse at http://localhost:3000
+            - Resources
+            - Use getterms.io to generate Privacy Policy / Terms of Use
+            - Favicon generator [realfavicongenerator](https://realfavicongenerator.net/)
