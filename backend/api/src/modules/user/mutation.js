@@ -137,7 +137,28 @@ export async function userProfileUpdate({ params: { name }, auth, translate }) {
         message: translate.t("user.profile.messages.success"),
       };
     } catch (error) {
-      throw new Error(transalte.t("common.messages.error.server"));
+      throw new Error(translate.t("common.messages.error.server"));
+    }
+  }
+
+  throw new Error(translate.t("common.messages.error.unauthorized"));
+}
+
+export async function userChangeImage({ params: { image }, auth, translate }) {
+  if (authCheck(auth)) {
+    try {
+      const user = User.findOneAndUpdate(
+        { _id: auth.user._id },
+        { image },
+        { new: true }
+      );
+
+      return {
+        data: userAuthResponse(user),
+        message: translate.t("user.profile.messages.success"),
+      };
+    } catch (error) {
+      throw new Error(translate.t("common.messages.error.server"));
     }
   }
 
