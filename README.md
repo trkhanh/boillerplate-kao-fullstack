@@ -192,3 +192,5 @@ solution
         - iOS App icon and splashscreen generator [appicon](https://www.fanstudio.co.uk/appicon/)
         - Icon generator [makeappicon](https://makeappicon.com/)
         - Icons and splashscreen generator imagegorilla
+    ## Authors
+    - 👩‍💻Tran Khanh [trkhanh8@gmail.com](mailto:trkhanh8@gmail.com) 
