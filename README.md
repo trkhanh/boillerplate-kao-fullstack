@@ -138,3 +138,16 @@ solution
             - Resources
             - Use getterms.io to generate Privacy Policy / Terms of Use
             - Favicon generator [realfavicongenerator](https://realfavicongenerator.net/)
+* Web
+    - Switch to web directory cd frontend/app/web
+    - Configuration
+        - Create local environment file cp `.env.dev.example` `.env.local`
+        - Modify `.env.local` for
+            - `PORT` (5000)
+            - `REACT_APP_LANDING_URL` (http://localhost:3000)
+            - `REACT_APP_WEB_URL` (http://localhost:5000)
+            - `REACT_APP_API_URL` (http://localhost:8000)
+            - Setup
+            - Install dependencies: npm install
+            - Run
+            - Start Web server: npm start, browse at http://localhost:5000
