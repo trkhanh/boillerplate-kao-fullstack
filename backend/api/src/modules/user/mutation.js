@@ -101,5 +101,45 @@ export async function userSignup({
     }
   }
 
-  throw new Error(translate.t('common.messages.error.default'))
+  throw new Error(translate.t("common.messages.error.default"));
+}
+
+// Update profile
+export async function userProfileUpdate({ params: { name }, auth, translate }) {
+  if (authCheck(auth)) {
+    // Validation rules
+    const rules = [
+      {
+        data: { value: name, length: params.user.rules.nameMinLength },
+        check: "isLengthMinimum",
+        message: translate.t("user.messages.fields.nameMinLength", {
+          length: params.user.rules.nameMinLength,
+        }),
+      },
+    ];
+
+    // Validate
+    try {
+      v.validate(rules);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+
+    try {
+      const user = await User.findOneAndUpdate(
+        { _id: auth.user._id },
+        { name },
+        { new: true }
+      );
+
+      return {
+        data: userAuthResponse(user),
+        message: translate.t("user.profile.messages.success"),
+      };
+    } catch (error) {
+      throw new Error(transalte.t("common.messages.error.server"));
+    }
+  }
+
+  throw new Error(translate.t("common.messages.error.unauthorized"));
 }
