@@ -1,0 +1,1 @@
+https://sourcemaking.com/uml/modeling-it-systems/external-view/query-events-and-mutation-events
