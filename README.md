@@ -165,3 +165,30 @@ solution
     * Resources [- Set Up Free SSL Certificates from Let's Encrypt using Docker and Nginx 6](https://www.humankode.com/ssl/how-to-set-up-free-ssl-certificates-from-lets-encrypt-using-docker-and-nginx). 
 
     * Re-deploy with following steps: - Change directory `cd /var/www/fullstack` - Pull latest code git pull - Rebuild containers: `docker-compose up --build -d`
+
+* Mobile
+    * Switch to mobile directory `cd frontend/app/mobile`
+    * Configuration
+        * Modify `src/setup/config/env.js` for
+            - `APP_ENV` (development | production)
+            - `LANDING_URL` (http://<your local network IP>:3000)
+            - `WEB_URL` (http://<your local network IP>:5000)
+            - `API_URL` (http://<your local network IP>:8000)
+            - Tip: use `ifconfig` on macOS or Linux to get your local IP address
+    * Setup
+        * Install dependencies: npm install
+    * Run
+        * **iOS** `react-native run-ios --simulator='iPhone 8'`
+        * **Android** `react-native run-androi`d (connect your Android phone via USB or use already created simulator with name `Mobile_-_5` by running `cd ~/Library/Android/sdk/tools && ./emulator -avd Mobile_-_5`)
+    * Publish
+        * **Android**
+            - Build: `cd android && ./gradlew assembleRelease && cd ...`
+            - Upload` frontend/app/mobile/android/app/build/outputs/apk/release/app-release.apk` to Play Store.
+        * **iOS**
+            - Build: Open frontend/app/mobile/ios/example.xcodeproj in Xcode` -> Choose Generic iOS Device (top left) -> Product (top menu) -> Archive.
+            - Upload using Archiver (will open automatically once Archive is complete)
+    * Resources
+        - [From react-native init to app stores real quick](https://blog.elao.com/en/dev/from-react-native-init-to-app-stores-real-quick/)
+        - iOS App icon and splashscreen generator [appicon](https://www.fanstudio.co.uk/appicon/)
+        - Icon generator [makeappicon](https://makeappicon.com/)
+        - Icons and splashscreen generator imagegorilla
