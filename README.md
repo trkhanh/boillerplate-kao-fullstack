@@ -107,7 +107,7 @@ solution
         - Modify `.env.local` for
             - `PORT` (8000)
             - `NODE_ENV` (development | production)
-            - `SECURITY_SECRET` (Use passwordsgenerator)
+            - `SECURITY_SECRET` (Use [passwordsgenerator]('https://passwordsgenerator.net/'))
             - `SECURITY_SALT_ROUNDS` (10)
             - `MONGO_URL` (mongodb://localhost:27017/example)
             - `LANDING_URL` (http://localhost:3000)
@@ -116,3 +116,9 @@ solution
             - `EMAIL_ON` (0 | 1 (in development, you can toggle to send emails or not))
             - `EMAIL_TEST` (send test emails to this address)
             - `EMAIL_HOST`, `EMAIL_USER`, `EMAIL_PASSWORD` (use any email service, eg. mailgun.com and get credentials to start sending emails
+    * Setup
+            - Install packages and seed database npm run setup
+    * Run
+            - Start API server: npm start (http://localhost:8000)
+* Landing
+    - Switch to landing directory cd frontend/landing
