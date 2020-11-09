@@ -151,3 +151,17 @@ solution
             - Install dependencies: npm install
             - Run
             - Start Web server: npm start, browse at http://localhost:5000
+* Deployment
+    * Deploy code
+        1. Login to the server (SSH)
+        2. Create a new directory on server: `mkdir /var/www/fullstack` and switch to the directory `cd /var/www/fullstack`
+        3. Clone repository git clone `git@github.com:trkhanh8/fullstack-javascript-architecture.git` .
+        4. Switch to `deployment` directory cd `deployment`
+        5. Build containers `docker-compose up --build -d`
+            - `up` = Builds, (re)creates, starts, and attaches to containers for a service.
+            - `--build` = Build images before starting containers
+            - `-d` = Detached mode: Run containers in the background, print new container names
+        
+    * Resources [- Set Up Free SSL Certificates from Let's Encrypt using Docker and Nginx 6](https://www.humankode.com/ssl/how-to-set-up-free-ssl-certificates-from-lets-encrypt-using-docker-and-nginx). 
+
+    * Re-deploy with following steps: - Change directory `cd /var/www/fullstack` - Pull latest code git pull - Rebuild containers: `docker-compose up --build -d`
