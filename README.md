@@ -1,6 +1,8 @@
 # Full-Stack JavaScript Architecture 
 Opinionated project architecture for Full-Stack JavaScript Applications.
 
+<img src="https://docs.google.com/drawings/d/e/2PACX-1vSLgH9YfIHJTJU9FVZjReT53TMobe73doa7rqJCLKstsLPGHUiqFTnUL5dyR7fEQ8QBfyqPi8I-dTZS/pub?w=972&amp;h=511">
+
 ## About
 Using JS for full-stack has alway been challenge especially with architecting various pieces of the application, choosing technologies and managing devOps. This project provides a base typical project consisting a Landing website, Web and Mobile Application, API services and easy deployment of these services. This project uses a micro-services architecture where all individual project runs as a services (container)
 
