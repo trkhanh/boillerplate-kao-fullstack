@@ -1,4 +1,4 @@
-# Full-Stack JavaScript Architecture 
+# Full-Stack Kao Architecture 
 Opinionated project architecture for Full-Stack JavaScript Applications.
 
 <img src="https://docs.google.com/drawings/d/e/2PACX-1vSLgH9YfIHJTJU9FVZjReT53TMobe73doa7rqJCLKstsLPGHUiqFTnUL5dyR7fEQ8QBfyqPi8I-dTZS/pub?w=972&amp;h=511">
