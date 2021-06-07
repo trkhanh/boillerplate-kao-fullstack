@@ -1,9 +1,9 @@
 // Component Styles
 const styles = {
-    toolbar: {
-        textAlign: 'right',
-        justifyContent: 'flex-end',
-    },
+  toolbar: {
+    textAlign: 'right',
+    justifyContent: 'flex-end',
+  },
 }
 
-export default
+export default styles

@@ -1,4 +1,3 @@
-  
 // App Imports
 import Home from '../../modules/pages/Home'
 
@@ -7,6 +6,6 @@ export default {
   pagesHome: {
     path: '/',
     component: Home,
-    exact: true
-  }
+    exact: true,
+  },
 }

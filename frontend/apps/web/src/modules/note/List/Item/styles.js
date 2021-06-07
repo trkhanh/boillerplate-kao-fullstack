@@ -1,16 +1,16 @@
 // Component Styles
 const styles = (theme) => ({
-    root: {
-        marginBottom: theme.spacing(3),
-    },
+  root: {
+    marginBottom: theme.spacing(3),
+  },
 
-    content: {
-        paddingBottom: 0,
-    },
+  content: {
+    paddingBottom: 0,
+  },
 
-    note: {
-        whiteSpace: 'pre-line',
-    },
+  note: {
+    whiteSpace: 'pre-line',
+  },
 })
 
 export default styles

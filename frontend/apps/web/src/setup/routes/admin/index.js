@@ -5,5 +5,5 @@ import user from './user'
 // Admin routes
 export default {
   ...dashboard,
-  ...user
+  ...user,
 }
