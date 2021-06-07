@@ -51,11 +51,11 @@ services:
       - front
 
   # Frontend / Landing
-  landing:
-    image: landing
-    build: ../frontend/landing
-    networks:
-      - front
+  # landing:
+  #   image: landing
+  #   build: ../frontend/landing
+  #   networks:
+  #     - front
 
 networks:
   front:

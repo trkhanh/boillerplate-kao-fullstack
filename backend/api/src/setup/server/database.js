@@ -1,26 +1,26 @@
 // Imports
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
-// App imports
-import { MONGO_URL } from "../config/env";
+// App Imports
+import { MONGO_URL } from '../config/env'
 
 // Connect database
 export default async function () {
-  console.info("SETUP - Connecting database..");
+  console.info('SETUP - Connecting database..')
 
-  await connectWithRetry();
+  await connectWithRetry()
 }
 
 // Handle connection error
-mongoose.connection.on("error", (error) => {
-  console.log(`ERROR - Connection failed: ${error.message}`);
+mongoose.connection.on('error', (error) => {
+  console.log(`ERROR - Connection failed: ${error.message}`)
 
   setTimeout(async () => {
-    console.log(`SETUP - Connecting database.. retrying.. `);
+    console.log('SETUP - Connecting database.. retrying..')
 
-    await connectWithRetry();
-  }, 5000);
-});
+    await connectWithRetry()
+  }, 5000)
+})
 
 // Retry connection
 const connectWithRetry = async () => {
@@ -29,5 +29,5 @@ const connectWithRetry = async () => {
     useCreateIndex: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
-  });
-};
+  })
+}

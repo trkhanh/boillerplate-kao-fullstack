@@ -1,18 +1,18 @@
 // Imports
-import bcrypt from "bcrypt";
-import React from "react";
+import bcrypt from 'bcrypt'
+import React from 'react'
 
 // App Imports
-import { SECURITY_SALT_ROUNDS } from "../../setup/config/env";
-import params from "../../setup/config/params";
-import { authCheck } from "../../setup/helpers/utils";
-import v from "../../setup/helpers/validation";
-import User from "./model";
-import { userAuthResponse } from "./query";
+import { SECURITY_SALT_ROUNDS } from '../../setup/config/env'
+import params from '../../setup/config/params'
+import { authCheck } from '../../setup/helpers/utils'
+import v from '../../setup/helpers/validation'
+import User from './model'
+import { userAuthResponse } from './query'
 
 // Email
-import { send as sendEmail } from "../email/send";
-import Signup from "./email/Signup";
+import { send as sendEmail } from '../email/send'
+import Signup from './email/Signup'
 
 // Create
 export async function userSignup({
@@ -23,43 +23,43 @@ export async function userSignup({
   const rules = [
     {
       data: { value: name, length: params.user.rules.nameMinLength },
-      check: "isLengthMinimum",
-      message: translate.t("user.messages.fields.nameMinLength", {
+      check: 'isLengthMinimum',
+      message: translate.t('user.messages.fields.nameMinLength', {
         length: params.user.rules.nameMinLength,
       }),
     },
     {
       data: { value: email },
-      check: "isValidEmail",
-      message: translate.t("user.messages.fields.email"),
+      check: 'isValidEmail',
+      message: translate.t('user.messages.fields.email'),
     },
     {
       data: { value: password, length: params.user.rules.passwordMinLength },
-      check: "isLengthMinimum",
-      message: translate.t("user.messages.fields.passwordMinLength", {
+      check: 'isLengthMinimum',
+      message: translate.t('user.messages.fields.passwordMinLength', {
         length: params.user.rules.passwordMinLength,
       }),
     },
     {
       data: { value1: password, value2: passwordRepeat },
-      check: "isEqual",
-      message: translate.t("user.messages.fields.passwordEqual"),
+      check: 'isEqual',
+      message: translate.t('user.messages.fields.passwordEqual'),
     },
-  ];
+  ]
 
   // Validate
   try {
-    v.validate(rules);
+    v.validate(rules)
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error(error.message)
   }
 
   // Check if user exists with same email
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email })
 
   if (!user) {
     try {
-      const passwordHashed = await bcrypt.hash(password, SECURITY_SALT_ROUNDS);
+      const passwordHashed = await bcrypt.hash(password, SECURITY_SALT_ROUNDS)
 
       const user = await User.create({
         name,
@@ -68,99 +68,98 @@ export async function userSignup({
         role: params.user.roles.user.key,
         image: params.user.image.default,
         isDeleted: false,
-      });
+      })
 
       if (user) {
-        try {
-          // Send email
-          await sendEmail({
-            translate,
-            to: {
-              email: user.email,
-            },
-            from: {
-              name: params.site.emails.help.name,
-              email: params.site.emails.help.email,
-            },
-            subject: translate.t("user.signup.email.subject"),
-            template: <Signup to={name} translate={translate} />,
-          });
+        // Send email
+        await sendEmail({
+          translate,
+          to: {
+            email: user.email,
+          },
+          from: {
+            name: params.site.emails.help.name,
+            email: params.site.emails.help.email,
+          },
+          subject: translate.t('user.signup.email.subject'),
+          template: <Signup to={name} translate={translate} />,
+        })
 
-          return {
-            data: userAuthResponse(user),
-            message: translate.t("user.signup.messages.success"),
-          };
-        } catch (error) {
-          console.log(error);
-
-          throw new Error(translate.t("common.messages.error.server"));
+        return {
+          data: userAuthResponse(user),
+          message: translate.t('user.signup.messages.success'),
         }
       }
     } catch (error) {
-      throw new Error(translate.t("user.signup.messages.error.exists"));
+      console.log(error)
+
+      throw new Error(translate.t('common.messages.error.server'))
     }
+  } else {
+    throw new Error(translate.t('user.signup.messages.error.exists'))
   }
 
-  throw new Error(translate.t("common.messages.error.default"));
+  throw new Error(translate.t('common.messages.error.default'))
 }
 
-// Update profile
+// Update Profile
 export async function userProfileUpdate({ params: { name }, auth, translate }) {
   if (authCheck(auth)) {
     // Validation rules
     const rules = [
       {
         data: { value: name, length: params.user.rules.nameMinLength },
-        check: "isLengthMinimum",
-        message: translate.t("user.messages.fields.nameMinLength", {
+        check: 'isLengthMinimum',
+        message: translate.t('user.messages.fields.nameMinLength', {
           length: params.user.rules.nameMinLength,
         }),
       },
-    ];
+    ]
 
     // Validate
     try {
-      v.validate(rules);
+      v.validate(rules)
     } catch (error) {
-      throw new Error(error.message);
+      throw new Error(error.message)
     }
 
     try {
       const user = await User.findOneAndUpdate(
         { _id: auth.user._id },
         { name },
-        { new: true }
-      );
+        { new: true },
+      )
 
       return {
         data: userAuthResponse(user),
-        message: translate.t("user.profile.messages.success"),
-      };
+        message: translate.t('user.profile.messages.success'),
+      }
     } catch (error) {
-      throw new Error(translate.t("common.messages.error.server"));
+      throw new Error(translate.t('common.messages.error.server'))
     }
   }
 
-  throw new Error(translate.t("common.messages.error.unauthorized"));
+  throw new Error(translate.t('common.messages.error.unauthorized'))
 }
 
+// Change image
 export async function userChangeImage({ params: { image }, auth, translate }) {
   if (authCheck(auth)) {
     try {
-      const user = User.findOneAndUpdate(
+      const user = await User.findOneAndUpdate(
         { _id: auth.user._id },
         { image },
-        { new: true }
-      );
+        { new: true },
+      )
 
       return {
         data: userAuthResponse(user),
-        message: translate.t("user.profile.messages.success"),
-      };
+        message: translate.t('user.profile.messages.success'),
+      }
     } catch (error) {
-      throw new Error(translate.t("common.messages.error.server"));
+      throw new Error(translate.t('common.messages.error.server'))
     }
   }
 
-  throw new Error(translate.t("common.messages.error.unauthorized"));
+  throw new Error(translate.t('common.messages.error.unauthorized'))
 }

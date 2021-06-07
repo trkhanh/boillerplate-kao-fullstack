@@ -1,31 +1,34 @@
-import mongoose from "mongoose";
+// Imports
+import mongoose from 'mongoose'
 
-import { NODE_ENV } from "../config/env";
-import database from "../server/database";
-import user from "../../modules/user/seed";
-import note from "../../modules/note/seed";
+// App Imports
+import { NODE_ENV } from '../config/env'
+import database from '../server/database'
+import user from '../../modules/user/seed'
+import note from '../../modules/note/seed'
 
 // Seeder
 async function seeder() {
-  console.log("SEED - Started");
+  console.log('SEED - Started')
 
-  await database();
+  await database()
 
   // Clear database, only in development, do not do in production. I repeat, do not do it in production or you will be featured on www.commitstrip.com!
-  if (NODE_END === "development") {
-    console.log("SEED - Dropping database.. ❗");
+  if (NODE_ENV === 'development') {
+    // @temp allow reset database
+    console.log('SEED - Dropping database.. ❗')
 
-    await mongoose.connection.dropDatabase();
+    await mongoose.connection.dropDatabase()
   }
 
   // Seeds
-  await user();
-  await note();
+  await user()
+  await note()
 
   // Close connection
-  mongoose.connection.close();
+  mongoose.connection.close()
 
-  console.log("SEED - Complete. ✅");
+  console.log('SEED - Complete. ✅')
 }
 
 // Run seeder

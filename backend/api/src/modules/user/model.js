@@ -1,11 +1,11 @@
 // Imports
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose'
 
 // App Imports
-import params from "../../setup/config/params";
+import params from '../../setup/config/params'
 
 // Collection name
-export const collection = "User";
+export const collection = 'User'
 
 // Schema
 const schema = new Schema(
@@ -41,8 +41,8 @@ const schema = new Schema(
       default: false,
     },
   },
-  { timestamps: true }
-);
+  { timestamps: true },
+)
 
 // Model
-export default mongoose.model(collection, schema, collection);
+export default mongoose.model(collection, schema, collection)
